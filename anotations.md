@@ -37,3 +37,35 @@ O NPM e o YARN têm algumas pequenas diferenças nos comandos e na forma como li
 
 ## Postman - o que é?
 Além de diversas outras ferramentas de testes em APIs, em nosso projeto ele vai “substituir” a parte do front-end em uma aplicação completa, enviando as requisições para o nosso servidor local.
+
+## Partes da requisição e resposta
+O protocolo de comunicação HTTP é baseado em requisições e respostas e na comunicação cliente-servidor.
+
+Todo processo de requisição-resposta usando HTTP é sempre iniciado pelo lado cliente da requisição. O lado servidor da requisição nunca envia “ativamente” nenhuma resposta para o lado cliente sem ser como resultado de uma requisição.
+Partes da requisição
+
+### As partes que podem compor uma requisição são:
+
+-> URL, também chamado de caminho ou rota, sempre iniciado com http:// ou https://.
+-> Header, também chamado de cabeçalho, envia informações referentes ao cliente ou ao tipo de requisição. Alguns dados enviados através dos cabeçalhos são:
+* host é o domínio do servidor que receberá a requisição.
+* User-agent identifica o cliente, por exemplo, dados do navegador de onde está saindo a requisição.
+* Content-Type é o formato do dado que está sendo enviado no body da requisição, por exemplo JSON, string etc. Confira a lista completa de tipos de dados e como devem ser declarados no header.
+* Authorization são as credenciais de autenticação para acesso a recursos protegidos.
+* Accept especifica o formato de retorno esperado na resposta, por exemplo, JSON.
+-> Body ou corpo da requisição, onde são trafegados dados enviados pelo cliente para serem recebidos pelo servidor, normalmente utilizado para dados mais estruturados e em requisições POST, PUT or PATCH. O tipo de dado enviado pelo body deve ser o mesmo especificado no Content-Type, por exemplo, application/json.
+-> Parâmetros são inseridos na URL para envio de dados específicos, muito utilizados, por exemplo, para envio de informações variáveis como termos de buscas, IDs etc.
+-> Método HTTP, entre os aceitos pela rota, especifica o tipo de operação solicitado pelo cliente. Os mais comuns são os métodos GET, POST, PUT e DELETE. Vamos trabalhar com estes métodos com mais profundidade durante o curso.
+
+### Partes da resposta
+A resposta a uma requisição HTTP é enviada pelo lado servidor da comunicação, de volta ao lado cliente. A resposta contém informações referentes à requisição, que podem ser uma confirmação de operação, dados solicitados ou mesmo mensagens de erro pertinentes em caso de falha em algum ponto da comunicação.
+
+As partes que podem compor a resposta são:
+
+-> Status da resposta, que contém a versão HTTP utilizada, o código de status e a mensagem de status. Por exemplo, HTTP/1.1 200 OK.
+-> Headers ou cabeçalhos, com informações adicionais sobre a resposta ou o conteúdo da resposta. Por exemplo:
+* Content-Type;
+* Content-Length, que corresponde ao tamanho em bytes do corpo da resposta;
+* Cache-Control, que são as instruções de cache para a resposta;
+* Set-Cookie, que adiciona um valor de cookie ao navegador. Caso queira saber mais, confira este artigo sobre o que são cookies e como são utilizados.
+-> Body, o corpo da resposta, que contém os dados ou o conteúdo solicitado pelo cliente através da requisição e enviado pelo servidor. O formato de dados do body vai depender do formato especificado em Content-Type, por exemplo JSON.
