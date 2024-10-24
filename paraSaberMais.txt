@@ -1,0 +1,7 @@
+https://expressjs.com/
+https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+https://www.alura.com.br/artigos/desmistificando-o-protocolo-http-parte-1
+https://cursos.alura.com.br/course/http-entendendo-web-por-baixo-dos-panos
+https://www.postman.com/
+https://www.alura.com.br/artigos/postman-como-instalar-dar-seus-primeiros-passos
+https://insomnia.rest/
