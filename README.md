@@ -1,19 +1,16 @@
-# criando uma API Rest com NodeJS Express e MongoDB
+# Criando uma API Rest com NodeJS Express e MongoDB
+## O que é API: 
+API - Aplication Programming Interface, que significa Interface de Aplicação de Aplicações, em português
 
-API - Aplication Programming Interface
-(Interface de Aplicação de Aplicações)
-
-Funcionamento do API:
+## Funcionamento de una API:
 Front-end: Interface com o usuário 
-Front-end: Interface entre o Front-end e a base de dados 
+Back-end: Interface entre o Front-end e a base de dados 
 Dados: armazenamento das informações 
 
 ## O que será construído: 
-API Rest com para o sistema interno de uma livraria.
+API Rest (um tipo extremamente comum em programação web) para o sistema interno de uma livraria.
 
-### API REST
-É um tipo de API extremamente comum em programação web.
-
+## API Rest: 
 O termo REST (representational state transfer ou transferência de estado representacional) representa um padrão para desenvolvimento de APIs web utilizando o protocolo HTTP para transmissão de dados.
 
 ## Métodos HTTP
@@ -39,3 +36,6 @@ disponível em: https://www.alura.com.br/artigos/rest-conceito-e-fundamentos
 #### Criando o servidor
 ##### Criação de um projeto Node
 ```npm init -y```
+
+
+```npm install nodemon@3.0.1```: referenciar servidor para que não seja ecessário derrubar e iniciar servidor manualmente a cada alteração.
