@@ -18,7 +18,7 @@ const livros = [
         autor: "J. K. Rowling"
     },
     {
-        id: 1,
+        id: 3,
         titulo: "Luna Clara e Apolo Onze",
         autor: "Adriana Falcão"
     }
@@ -31,7 +31,7 @@ function buscaLivroPorId(id) {
     })
 }
 //gerenciamento de rotas com express:
-// ------------------- MÉTODO GET -------------------
+// ------------------- MÉTODO GET: read -------------------
 app.get("/", (req, res) => {
     res.status(200).send("Curso de Node.js")
 })
@@ -47,13 +47,28 @@ app.get("/livros/:id", (req, res) => {
     res.status(200).json(livros[index])
 })
 
-// ------------------- MÉTODO POST -------------------
+// ------------------- MÉTODO POST: create -------------------
 app.post("/livros", (req, res) => {
     livros.push(req.body)
     //As requisições precisam de resposta e todas as respostas de sucesso devem conter o status 201
     res.status(201).send("Livro adicionado com sucesso!")
 })
 
+// ------------------- MÉTODO PUT: update -------------------
+app.put("/livros/:id", (req, res) => {
+    const index = buscaLivroPorId(req.params.id);
+    livros[index].titulo = req.body.titulo; //altera o titulo pelo que for enviado no body da requisição;
+    livros[index].autor = req.body.autor; 
+    res.status(200).json(livros)
+})
+
+
+// ------------------- MÉTODO DELETE: delete -------------------
+app.delete("/livros/:id", (req, res) => {
+    const index = buscaLivroPorId(req.params.id)
+    livros.splice(index, 1)
+    res.status(200).send("Livro removido com sucesso!")
+})
 
 //Exportando o app para ser usado em outros arquivos:
 export default app;
