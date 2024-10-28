@@ -7,3 +7,5 @@ https://www.alura.com.br/artigos/postman-como-instalar-dar-seus-primeiros-passos
 https://insomnia.rest/
 https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers
 https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+https://mongoosejs.com/
+https://www.prisma.io/mongodb
