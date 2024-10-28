@@ -3,6 +3,9 @@ import mongoose, { mongo } from 'mongoose';
 //importando o arquivo de configuração do mongoDB:
 import conectaNoBancoDeDados from './config/dbConect.js';
 
+//importando schema de um livro para fazer a API se comunicar com o banco e não mais com o array:
+import livroSchema from './models/Livros.js';
+
 const conexaoDB = await conectaNoBancoDeDados();
 
 //Caso ocorra algum erro na conexão com o mongoDB:
@@ -20,40 +23,12 @@ const app = express();
 //middleware para converter o body da requisição de string em json:
 app.use(express.json())
 
-//Array de livros: 
-const livros = [
-    {
-        id: 1,
-        titulo: "O Senhor dos Aneis",
-        autor: "J. R. R. Tolkien"
-    },
-    {
-        id: 2,
-        titulo: "Harry Potter e a Pedra Filosofal",
-        autor: "J. K. Rowling"
-    },
-    {
-        id: 3,
-        titulo: "Luna Clara e Apolo Onze",
-        autor: "Adriana Falcão"
-    }
-]
-
-//Função para recuperar indice de um livro no array:
-function buscaLivroPorId(id) {
-    return livros.findIndex(livro => {
-        return livro.id === Number(id); //convertendo o id de string para numero
-    })
-}
 //gerenciamento de rotas com express:
 // ------------------- MÉTODO GET: read -------------------
-app.get("/", (req, res) => {
-    res.status(200).send("Curso de Node.js")
+app.get("/livros", async (req, res) => {
+    const listaLivros = await livroSchema.find({}); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
+    res.status(200).json(listaLivros)
 })
-
-app.get("/livros", (req, res) => {
-    res.status(200).json(livros)
-});
 
 //Recupera livro com id especificado:
 app.get("/livros/:id", (req, res) => {
