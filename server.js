@@ -1,3 +1,6 @@
+//inicio do .env no ponto mais externo do projeto: server.js
+import "dotenv/config";
+
 //exportação do express:
 import app from "./src/app.js";
 
