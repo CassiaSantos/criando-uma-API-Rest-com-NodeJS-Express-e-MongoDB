@@ -39,3 +39,7 @@ disponível em: https://www.alura.com.br/artigos/rest-conceito-e-fundamentos
 
 
 ```npm install nodemon@3.0.1```: referenciar servidor para que não seja ecessário derrubar e iniciar servidor manualmente a cada alteração.
+
+```npm install mongodb```: instala dependências para usar o MongoDB;
+
+```npm install mongoose```: biblioteca que fará a conversação entre o MongoDB e o API Node;
