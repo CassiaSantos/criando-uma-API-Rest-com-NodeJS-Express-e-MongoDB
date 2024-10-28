@@ -43,3 +43,5 @@ disponível em: https://www.alura.com.br/artigos/rest-conceito-e-fundamentos
 ```npm install mongodb```: instala dependências para usar o MongoDB;
 
 ```npm install mongoose```: biblioteca que fará a conversação entre o MongoDB e o API Node;
+
+```npm install dotenv```: para usar variáveis de ambiente no projeto e esconder dados de acesso ao banco de dados;
