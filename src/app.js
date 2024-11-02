@@ -24,30 +24,6 @@ const app = express();
 //importando as rotas:
 routes(app);
 
-// ------------------- MÉTODO GET: read -------------------
-//Recupera livro com id especificado:
-app.get("/livros/:id", (req, res) => {
-    // O id da requisição será passado como parâmetro para a função buscaLivroPorId localizar o livro que tem esse valor como índice no array:
-    const index = buscaLivroPorId(req.params.id);
-    res.status(200).json(livros[index])
-})
-
-// ------------------- MÉTODO POST: create -------------------
-app.post("/livros", (req, res) => {
-    livros.push(req.body)
-    //As requisições precisam de resposta e todas as respostas de sucesso devem conter o status 201
-    res.status(201).send("Livro adicionado com sucesso!")
-})
-
-// ------------------- MÉTODO PUT: update -------------------
-app.put("/livros/:id", (req, res) => {
-    const index = buscaLivroPorId(req.params.id);
-    livros[index].titulo = req.body.titulo; //altera o titulo pelo que for enviado no body da requisição;
-    livros[index].autor = req.body.autor; 
-    res.status(200).json(livros)
-})
-
-
 // ------------------- MÉTODO DELETE: delete -------------------
 app.delete("/livros/:id", (req, res) => {
     const index = buscaLivroPorId(req.params.id)
