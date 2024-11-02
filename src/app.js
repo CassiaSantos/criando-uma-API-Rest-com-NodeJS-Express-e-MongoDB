@@ -3,8 +3,8 @@ import mongoose, { mongo } from 'mongoose';
 //importando o arquivo de configuração do mongoDB:
 import conectaNoBancoDeDados from './config/dbConect.js';
 
-//importando schema de um livro para fazer a API se comunicar com o banco e não mais com o array:
-import livroSchema from './models/Livros.js';
+//importanto as rotas:
+import routes from './routes/index.js';
 
 const conexaoDB = await conectaNoBancoDeDados();
 
@@ -20,16 +20,11 @@ conexaoDB.once("open", () => {
 
 //importando o express: app conterá todaas as funcionalidades do express
 const app = express();
-//middleware para converter o body da requisição de string em json:
-app.use(express.json())
 
-//gerenciamento de rotas com express:
+//importando as rotas:
+routes(app);
+
 // ------------------- MÉTODO GET: read -------------------
-app.get("/livros", async (req, res) => {
-    const listaLivros = await livroSchema.find({}); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
-    res.status(200).json(listaLivros)
-})
-
 //Recupera livro com id especificado:
 app.get("/livros/:id", (req, res) => {
     // O id da requisição será passado como parâmetro para a função buscaLivroPorId localizar o livro que tem esse valor como índice no array:

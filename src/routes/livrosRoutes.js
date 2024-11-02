@@ -1,6 +1,8 @@
 import express from "express";
 import livroController from "../controllers/livroController.js";
 
-const routes = express.Router();
+const routesLivro = express.Router();
 
-routes.get("/livros", livroController.listarLivros);
+routesLivro.get("/livros", livroController.listarLivros);
+
+export default routesLivro;
