@@ -57,6 +57,16 @@ class LivroController {
     }
 
     // ------------------- MÉTODO DELETE: delete -------------------
+    static async deletarLivro(req, res) {
+        try {
+            const id = req.params.id;
+            await livroSchema.findByIdAndDelete(id); //mongoose faz a atualização do livro no banco de dados através do id e o corpo da requisição;
+            res.status(200).json({message: "Livro deletado com sucesso!"})
+        } catch (erro) {
+            res.status(500).json({message: `${erro.message} - Não foi possível deletar o livro desejedo por falha na resquisão!`})
+        }
+    }
+
 }
 
 export default new LivroController;
