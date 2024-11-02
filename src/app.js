@@ -4,7 +4,7 @@ import mongoose, { mongo } from 'mongoose';
 import conectaNoBancoDeDados from './config/dbConect.js';
 
 //importanto as rotas:
-import routes from './routes/index.js';
+import routesLivro from './routes/index.js';
 
 const conexaoDB = await conectaNoBancoDeDados();
 
@@ -22,7 +22,7 @@ conexaoDB.once("open", () => {
 const app = express();
 
 //importando as rotas:
-routes(app);
+routesLivro(app);
 
 // ------------------- MÉTODO DELETE: delete -------------------
 app.delete("/livros/:id", (req, res) => {
