@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose, { mongo } from 'mongoose';
+
 //importando o arquivo de configuração do mongoDB:
 import conectaNoBancoDeDados from './config/dbConect.js';
 
@@ -23,13 +24,6 @@ const app = express();
 
 //importando as rotas:
 routesLivro(app);
-
-// ------------------- MÉTODO DELETE: delete -------------------
-app.delete("/livros/:id", (req, res) => {
-    const index = buscaLivroPorId(req.params.id)
-    livros.splice(index, 1)
-    res.status(200).send("Livro removido com sucesso!")
-})
 
 //Exportando o app para ser usado em outros arquivos:
 export default app;
