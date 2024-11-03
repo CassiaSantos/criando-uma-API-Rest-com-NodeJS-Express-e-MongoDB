@@ -11,16 +11,7 @@ class LivroController {
             res.status(500).json({message: `${erro.message} - Não foi possível carregar os livros por falha na resquisão!`})
         }
     }
-
-    static async listarLivros(req, res) {
-        try {
-            const listaLivros = await livroSchema.find({}); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
-            res.status(200).json(listaLivros)
-        } catch (erro) {
-            res.status(500).json({message: `${erro.message} - Não foi possível carregar os livros por falha na resquisão!`})
-        }
-    }
-
+    
     static async listarLivrosPorId(req, res) {
         try {
             const id = req.params.id;
