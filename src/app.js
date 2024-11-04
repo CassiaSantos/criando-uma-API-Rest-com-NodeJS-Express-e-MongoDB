@@ -5,7 +5,7 @@ import mongoose, { mongo } from 'mongoose';
 import conectaNoBancoDeDados from './config/dbConect.js';
 
 //importanto as rotas:
-import routesLivro from './routes/index.js';
+import routes from './routes/index.js';
 
 const conexaoDB = await conectaNoBancoDeDados();
 
@@ -23,7 +23,7 @@ conexaoDB.once("open", () => {
 const app = express();
 
 //importando as rotas:
-routesLivro(app);
+routes(app);
 
 //Exportando o app para ser usado em outros arquivos:
 export default app;
