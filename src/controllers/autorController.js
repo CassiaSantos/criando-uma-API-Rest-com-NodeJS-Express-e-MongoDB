@@ -5,16 +5,17 @@ class AutorController {
     // ------------------- MÉTODO GET: read -------------------
     static async listarAutores(req, res) {
         try {
-            const listaAutores = await autorSchema.find({}); //'listaAutores' conterá todos os autores cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'autorSchema';
+            const listaAutores = await autor.find({}); //'listaAutores' conterá todos os autores cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'autorSchema';
             res.status(200).json(listaAutores)
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível carregar os autores por falha na resquisão!`})
         }
     }
 
-    static async listarAutorPorId(req, res) {        try {
+    static async listarAutorPorId(req, res) {        
+        try {
             const id = req.params.id;
-            const autorEncontrado = await autorSchema.findById(id); //'listaAutores' conterá todos os autores cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'autorSchema';
+            const autorEncontrado = await autor.findById(id); //'listaAutores' conterá todos os autores cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'autorSchema';
             res.status(200).json(autorEncontrado)
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível carregar o autor desejedo por falha na resquisão!`})
@@ -39,7 +40,7 @@ class AutorController {
     static async atualizarAutor(req, res) {
         try {
             const id = req.params.id;
-            await autorSchema.findByIdAndUpdate(id, req.body); //mongoose faz a atualização do autor no banco de dados através do id e o corpo da requisição;
+            await autor.findByIdAndUpdate(id, req.body); //mongoose faz a atualização do autor no banco de dados através do id e o corpo da requisição;
             res.status(200).json({message: "Autor atualizado com sucesso!"})
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível alterar os dados do autor desejedo por falha na resquisão!`})
@@ -51,7 +52,7 @@ class AutorController {
     static async deletarAutor(req, res) {
         try {
             const id = req.params.id;
-            await autorSchema.findByIdAndDelete(id); //mongoose faz a atualização do autor no banco de dados através do id e o corpo da requisição;
+            await autor.findByIdAndDelete(id); //mongoose faz a atualização do autor no banco de dados através do id e o corpo da requisição;
             res.status(200).json({message: "Autor deletado com sucesso!"})
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível deletar o autor desejedo por falha na resquisão!`})
