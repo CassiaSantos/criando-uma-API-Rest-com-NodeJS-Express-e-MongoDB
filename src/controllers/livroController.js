@@ -1,5 +1,5 @@
 import livro from "../models/Livros.js";
-
+import { autor } from "../models/Autor.js";
 class LivroController {
 
     // ------------------- MÉTODO GET: read -------------------
@@ -24,8 +24,13 @@ class LivroController {
 
     // ------------------- MÉTODO POST: create -------------------
     static async cadastrarLivro(req, res) {
+        const novoLivro = (req.body);
         try {
-            const novoLivro = await livro.create(req.body);
+            const autorEncontrado = await autor.findById(novoLivro.autor);
+            const livroCompleto = {...novoLivro, autor: {//spread operator
+                ...autorEncontrado._doc
+            }};
+            const livroCriado = await livro.create(livroCompleto)
             res.status(201).json({
                 message: "Livro criado com sucesso!", livro: novoLivro})
 
