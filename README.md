@@ -1,47 +1,93 @@
-# Criando uma API Rest com NodeJS Express e MongoDB
-## O que é API: 
-API - Aplication Programming Interface, que significa Interface de Aplicação de Aplicações, em português
+# API para uma Livraria
 
-## Funcionamento de una API:
-Front-end: Interface com o usuário 
-Back-end: Interface entre o Front-end e a base de dados 
-Dados: armazenamento das informações 
+Esta é uma API para gerenciar uma livraria, construída com Node.js e MongoDB. A API permite o gerenciamento de autores e livros, possibilitando operações como listagem, criação, atualização e exclusão de registros. Este projeto é ideal para iniciantes que estão aprendendo a desenvolver APIs RESTful com Node.js.
 
-## O que será construído: 
-API Rest (um tipo extremamente comum em programação web) para o sistema interno de uma livraria.
+## Sumário
 
-## API Rest: 
-O termo REST (representational state transfer ou transferência de estado representacional) representa um padrão para desenvolvimento de APIs web utilizando o protocolo HTTP para transmissão de dados.
+- [Requisitos](#requisitos)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Endpoints](#endpoints)
+  - [Autores](#autores)
+  - [Livros](#livros)
+- [Execução](#execução)
+- [Contribuição](#contribuição)
 
-## Métodos HTTP
-Em aplicação REST, os métodos mais utilizados são:
-* O método GET é o método mais comum, geralmente é usado para solicitar que um servidor envie um recurso;
-* O método POST foi projetado para enviar dados de entrada para o servidor. Na prática, é frequentemente usado para suportar formulários HTML;
-* O método PUT edita e atualiza documentos em um servidor;
-* O método DELETE que como o próprio nome já diz, deleta certo dado ou coleção do servidor.
+## Requisitos
 
-## Códigos de Respostas
-Cada resposta que a aplicação REST retorna, é enviado um código definindo o status da requisição. Por exemplo:
-* 200 (OK), requisição atendida com sucesso;
-* 201 (CREATED), objeto ou recurso criado com sucesso;
-* 204 (NO CONTENT), objeto ou recurso deletado com sucesso;
-* 400 (BAD REQUEST), ocorreu algum erro na requisição (podem existir inumeras causas);
-* 404 (NOT FOUND), rota ou coleção não encontrada;
-* 500 (INTERNAL SERVER ERROR), ocorreu algum erro no servidor
+- Node.js v12+ 
+- MongoDB v4+
 
-disponível em: https://www.alura.com.br/artigos/rest-conceito-e-fundamentos
+## Instalação
 
+Clone este repositório e instale as dependências com o seguinte comando:
 
-## Comandos:
-#### Criando o servidor
-##### Criação de um projeto Node
-```npm init -y```
+```bash
+git clone https://github.com/seu-usuario/livraria-api.git
+cd livraria-api
+npm install
+```
 
+## Configuração
 
-```npm install nodemon@3.0.1```: referenciar servidor para que não seja ecessário derrubar e iniciar servidor manualmente a cada alteração.
+1. Crie um arquivo `.env` com as seguintes variáveis:
 
-```npm install mongodb```: instala dependências para usar o MongoDB;
+```plaintext
+PORT=3000
+MONGO_URI=sua_conexao_mongo
+```
 
-```npm install mongoose```: biblioteca que fará a conversação entre o MongoDB e o API Node;
+2. Certifique-se de que o MongoDB esteja em execução localmente ou forneça uma URI válida para um banco de dados remoto.
 
-```npm install dotenv```: para usar variáveis de ambiente no projeto e esconder dados de acesso ao banco de dados;
+## Estrutura do Projeto
+
+```
+.
+├── controllers/
+│   ├── autorController.js
+│   └── livroController.js
+├── models/
+│   ├── Autor.js
+│   └── Livro.js
+├── app.js
+└── server.js
+```
+
+- **`controllers/`**: Contém os controladores para os recursos da API (`autor` e `livro`), responsáveis por realizar operações no banco de dados.
+- **`models/`**: Define os modelos de dados (`Autor` e `Livro`) utilizados no MongoDB.
+- **`app.js`**: Configura a aplicação Express, incluindo middlewares e rotas.
+- **`server.js`**: Inicializa o servidor.
+
+## Endpoints
+
+### Autores
+
+- **GET /autores** - Lista todos os autores.
+- **GET /autores/:id** - Lista um autor pelo ID.
+- **POST /autores** - Cadastra um novo autor.
+- **PUT /autores/:id** - Atualiza um autor pelo ID.
+- **DELETE /autores/:id** - Exclui um autor pelo ID.
+
+### Livros
+
+- **GET /livros** - Lista todos os livros.
+- **GET /livros/:id** - Lista um livro pelo ID.
+- **POST /livros** - Cadastra um novo livro.
+- **PUT /livros/:id** - Atualiza um livro pelo ID.
+- **DELETE /livros/:id** - Exclui um livro pelo ID.
+- **GET /livros/busca?editora=nome** - Busca livros por editora.
+
+## Execução
+
+Inicie o servidor com o comando:
+
+```bash
+npm start
+```
+
+A API estará disponível em `http://localhost:3000`.
+
+## Contribuição
+
+Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novas funcionalidades. 
