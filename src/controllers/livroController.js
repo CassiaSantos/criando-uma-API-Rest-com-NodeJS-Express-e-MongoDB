@@ -76,4 +76,4 @@ class LivroController {
 
 }
 
-export default new LivroController;
+export default LivroController;
