@@ -5,7 +5,7 @@ class LivroController {
     // ------------------- MÉTODO GET: read -------------------
     static async listarLivros(req, res) { //async: assíncrono por aguardar a resposta do banco de dados;
         try {
-            const listaLivros = await livroSchema.find({}); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
+            const listaLivros = await livro.find({}); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
             res.status(200).json(listaLivros)
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível carregar os livros por falha na resquisão!`})
@@ -15,7 +15,7 @@ class LivroController {
     static async listarLivrosPorId(req, res) {
         try {
             const id = req.params.id;
-            const livroEncontrado = await livroSchema.findById(id); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
+            const livroEncontrado = await livro.findById(id); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
             res.status(200).json(livroEncontrado)
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível carregar o livro desejedo por falha na resquisão!`})
@@ -45,7 +45,7 @@ class LivroController {
     static async atualizarLivro(req, res) {
         try {
             const id = req.params.id;
-            await livroSchema.findByIdAndUpdate(id, req.body); //mongoose faz a atualização do livro no banco de dados através do id e o corpo da requisição;
+            await livro.findByIdAndUpdate(id, req.body); //mongoose faz a atualização do livro no banco de dados através do id e o corpo da requisição;
             res.status(200).json({message: "Livro atualizado com sucesso!"})
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível alterar os dados do livro desejedo por falha na resquisão!`})
@@ -56,7 +56,7 @@ class LivroController {
     static async deletarLivro(req, res) {
         try {
             const id = req.params.id;
-            await livroSchema.findByIdAndDelete(id); //mongoose faz a atualização do livro no banco de dados através do id e o corpo da requisição;
+            await livro.findByIdAndDelete(id); //mongoose faz a atualização do livro no banco de dados através do id e o corpo da requisição;
             res.status(200).json({message: "Livro deletado com sucesso!"})
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível deletar o livro desejedo por falha na resquisão!`})
@@ -71,7 +71,6 @@ class LivroController {
             res.status(200).json(livrosPorEditora);
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Falha ao buscar o livro desta editora!`})
-
         }
     }
 
