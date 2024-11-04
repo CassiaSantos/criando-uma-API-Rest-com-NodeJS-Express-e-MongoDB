@@ -3,7 +3,7 @@ import { autor } from "../models/Autor.js";
 class LivroController {
 
     // ------------------- MÉTODO GET: read -------------------
-    static async listarLivros(req, res) {
+    static async listarLivros(req, res) { //async: assíncrono por aguardar a resposta do banco de dados;
         try {
             const listaLivros = await livroSchema.find({}); //'listaLivros' conterá todos os livros cadastrados no banco de dados que tiverem o mesmo esquema do modelo 'livroSchema';
             res.status(200).json(listaLivros)
@@ -60,6 +60,18 @@ class LivroController {
             res.status(200).json({message: "Livro deletado com sucesso!"})
         } catch (erro) {
             res.status(500).json({message: `${erro.message} - Não foi possível deletar o livro desejedo por falha na resquisão!`})
+        }
+    }
+
+    //-------------------- Busca de um livro por editora -------------------
+    static async buscarLivroPorEditora(req, res) {
+        const editora = req.query.editora;
+        try {
+            const livrosPorEditora = await livro.find({editora: editora}); //editora(key) é o atributo do esquema do modelo 'livroSchema'; editora(value) é o valor passado como parâmetro da requisição; 
+            res.status(200).json(livrosPorEditora);
+        } catch (erro) {
+            res.status(500).json({message: `${erro.message} - Falha ao buscar o livro desta editora!`})
+
         }
     }
 
