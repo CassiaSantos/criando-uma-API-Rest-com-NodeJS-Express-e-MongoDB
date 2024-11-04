@@ -1,5 +1,6 @@
 import e from "express";
 import mongoose from "mongoose";
+import {autorSchema} from "Autor.js";
 
 //Schema do livro:
 /*Schema: objeto de configuração que define a estruttura e as propriedades de um documento */
@@ -9,7 +10,8 @@ const livroSchema = new mongoose.Schema({
     autor: {type: String, required: true},
     editora: {type: String},
     paginas: {type: Number},
-    ano: {type: Number}
+    ano: {type: Number},
+    autor: autorSchema
 
 }, {versionKey: false}) //não será um schema de versão;
 
